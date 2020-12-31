@@ -8,6 +8,7 @@
     <!-- <form> -->
       <input type="text" name="place" id="place" v-model="place">
       <button @click="search">検索</button>
+      <button @click="send">slackに送信</button>
     <!-- </form> -->
   </div>
 </template>
@@ -41,6 +42,20 @@ export default {
         }).catch(err => {
           console.log(err);
         });
+    },
+    send: function () {
+      let params = new URLSearchParams();
+      let message = {
+        username: 'API PRACTICE',
+        icon_emoji: 'rolling on the floor laughing',
+        text: `${this.place}\n${this.address}`,
+      }
+      params.append('payload', JSON.stringify(message));
+      axios.post(process.env.SLACK_URL, params).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
     }
   }
 }
