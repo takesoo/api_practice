@@ -10,6 +10,7 @@
       <button @click="search">検索</button>
       <button @click="send">slackに送信</button>
     <!-- </form> -->
+    <NuxtLink to="/map">Map page</NuxtLink>
   </div>
 </template>
 
